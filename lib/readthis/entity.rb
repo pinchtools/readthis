@@ -76,8 +76,9 @@ module Readthis
     #   entity.load(dumped)
     #
     def load(string)
-      marshal, compress, value = decompose(string)
+      return if string.nil?
 
+      marshal, compress, value = decompose(string)
       marshal.load(inflate(value, compress))
     rescue TypeError, NoMethodError
       string
